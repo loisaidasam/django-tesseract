@@ -16,7 +16,7 @@ def ocr(request):
 		form = OCRForm(request.POST, request.FILES)
 		if form.is_valid():
 			context['got_ocr_result'] = True
-			context['ocr_result'] = handle_uploaded_file(request.FILES['img_file'])
+			context['ocr_result'] = handle_uploaded_file(request.FILES['file'])
 	else:
 		form = OCRForm()
 	

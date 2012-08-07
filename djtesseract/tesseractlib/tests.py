@@ -11,6 +11,6 @@ import djtesseract.tesseractlib.tesseractlib as tesseractlib
 
 class OCRTest(TestCase):
     def test_ocr(self):
-    	filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fixtures', 'test.png')
+    	filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fixtures', 'test.png')
     	result = tesseractlib.ocr_from_file(filename)
     	self.assertEqual(result, 'Tesseract-OCR')

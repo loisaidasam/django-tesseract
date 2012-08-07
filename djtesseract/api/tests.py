@@ -1,16 +1,20 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
 
-Replace this with more appropriate tests for your application.
-"""
+import json
+import os
 
 from django.test import TestCase
 
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-		# TODO: Write availability and file upload tests
+class APITest(TestCase):
+	def test_api_request(self):
+		filename = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../fixtures', 'test.png')
+		
+		with open(filename, 'r') as fp:
+			response = self.client.post("/api/ocr/", {'file': fp})
+		
+		self.assertEqual(response.status_code, 200)
+		
+		json_result = json.loads(response.content)
+		
+		self.assertEqual(json_result, {'result': 'Tesseract-OCR'})
+		

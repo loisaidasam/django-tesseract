@@ -44,4 +44,4 @@ def handle_uploaded_file(f):
 
 
 class OCRForm(forms.Form):
-	img_file = forms.FileField(label='Select a file')
+	file = forms.FileField(label='Select a file')
