@@ -12,9 +12,11 @@
 				<p><input type="submit" value="Upload" /></p>
 			</form>
 		</div>
-		{% if ocr_result %}<div class="span6">
+		{% if got_ocr_result %}<div class="span6">
 			<h2>Tesseract-OCR Result</h2><br />
-			<textarea class="input-xlarge" id="textarea" rows="10">{{ ocr_result }}</textarea><br /><br />
+			{% if ocr_result %}<textarea class="input-xlarge" id="textarea" rows="10">{{ ocr_result }}</textarea>
+			{% else %}Didn't find any text in the file you provided :(
+			{% endif %}
 		</div>{% endif %}
 	</div>
 
