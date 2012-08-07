@@ -1,17 +1,11 @@
-from django.conf.urls import patterns, include, url
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.conf.urls import patterns, include, url
+from django.conf import settings
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'djtesseract.views.home', name='home'),
-    # url(r'^djtesseract/', include('djtesseract.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+	# API
+	(r'^api/', include('djtesseract.api.urls')),
+	
+	# Web
+	(r'', include('djtesseract.web.urls')),
 )

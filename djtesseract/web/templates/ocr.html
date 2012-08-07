@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}OCR{% endblock title %}
+
+{% block container %}
+
+	<div class="row">
+		<div class="span6">
+			<h2>Give it a spin!</h2><br />
+			<form enctype="multipart/form-data" method="post" action="{% url ocr %}">{% csrf_token %}
+				{{ form.as_p }}
+				<p><input type="submit" value="Upload" /></p>
+			</form>
+		</div>
+		{% if ocr_result %}<div class="span6">
+			<h2>Tesseract-OCR Result</h2><br />
+			<textarea class="input-xlarge" id="textarea" rows="10">{{ ocr_result }}</textarea><br /><br />
+		</div>{% endif %}
+	</div>
+
+{% endblock container %}

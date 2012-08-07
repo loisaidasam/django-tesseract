@@ -5,4 +5,8 @@
 .pydevproject
 .settings
 
-localsettings.py
+djtesseract/localsettings.py
+djtesseract/media/*
+
+logs/*
+
