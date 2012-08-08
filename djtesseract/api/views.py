@@ -25,28 +25,3 @@ def ocr(request):
 	
 	return _return_response({'result': result})
 	
-	'''
-	putting this here because we basically want "Content-type: application/x-www-form-urlencoded"
-	from facebook:
-// Create a new album
-$graph_url = "https://graph.facebook.com/me/albums?"
-. "access_token=". $access_token;
-
-$postdata = http_build_query(
-array(
- 'name' => $album_name,
- 'message' => $album_description
-   )
- );
-$opts = array('http' =>
-array(
- 'method'=> 'POST',
- 'header'=>
-   'Content-type: application/x-www-form-urlencoded',
- 'content' => $postdata
- )
-);
-$context  = stream_context_create($opts);
-$result = json_decode(file_get_contents($graph_url, false, 
-  $context));
-	'''
