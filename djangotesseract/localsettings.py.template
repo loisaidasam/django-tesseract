@@ -7,3 +7,7 @@ TESSERACT_USERNAME = 'username'
 TESSERACT_HOST = 'example.com'
 TESSERACT_PORT = 22
 TESSERACT_REMOTE_TMP_DIR = 'tmp'
+
+# Switch for enabling the web views
+# if False, just the /api/ endpoint will be made available
+TESSERACT_ENABLE_WEB = True

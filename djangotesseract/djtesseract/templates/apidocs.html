@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}API Docs{% endblock title %}
+
+{% block container %}
+
+	<div class="span8">
+		<h1>/api/</h1><br />
+		<h2>POST Parameters</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Parameter Name</th>
+					<th>Required</th>
+					<th>Default</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>file</td>
+					<td>True</td>
+					<td>N/A</td>
+					<td>Image/PDF file to be uploaded</td>
+				</tr>
+			</tbody>
+		</table>
+		<h2>Sample Response</h2>
+		<pre class="prettyprint">
+{
+	'result': "This is the resulting text from the image you uploaded"
+}</pre><br />
+		<h2>Description</h2>
+		<p>Endpoint for OCR. Post an image in a POST request with Content-type: application/x-www-form-urlencoded and receive back a response with the text found in that image/PDF file, as provided by Tesseract-OCR.<br /><br />
+		A successful request will receive a 200 status code and have a "result" attribute in the returned JSON dictionary. A failed request will receive a 400 status code and have a "message" attribute in the returned JSON dictionary with the reason for the failure.</p>
+	</div>
+
+{% endblock container %}
