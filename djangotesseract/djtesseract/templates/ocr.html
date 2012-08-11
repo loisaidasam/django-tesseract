@@ -7,7 +7,7 @@
 	<div class="row">
 		<div class="span6">
 			<h2>Give it a spin!</h2><br />
-			<form enctype="multipart/form-data" method="post" action="{% url ocr %}">{% csrf_token %}
+			<form enctype="multipart/form-data" method="post" action="{% url web %}">{% csrf_token %}
 				{{ form.as_p }}
 				<p><input type="submit" value="Upload" /></p>
 			</form>

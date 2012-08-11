@@ -1,4 +1,4 @@
-# Django settings for djtesseract project.
+# Django settings for django-tesseract project.
 
 import os
 def next_to_this_file(additional_path, this_file = __file__):
@@ -104,10 +104,10 @@ MIDDLEWARE_CLASSES = (
 	# 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'djtesseract.urls'
+ROOT_URLCONF = 'djangotesseract.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-#WSGI_APPLICATION = 'djtesseract.wsgi.application'
+#WSGI_APPLICATION = 'djangotesseract.wsgi.application'
 
 TEMPLATE_DIRS = (
 	# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -127,12 +127,10 @@ INSTALLED_APPS = (
 	# Uncomment the next line to enable admin documentation:
 	# 'django.contrib.admindocs',
 	
-	'djtesseract.tesseractlib',
-	'djtesseract.api',
-	'djtesseract.web',
+	'djangotesseract.djtesseract',
 )
 
-TEST_RUNNER = 'djtesseract.middleware.testrunner.AdvancedTestSuiteRunner'
+TEST_RUNNER = 'djangotesseract.middleware.testrunner.AdvancedTestSuiteRunner'
 TEST_EXCLUDE = ['django', ]
 
 # A sample logging configuration. The only tangible logging
@@ -182,17 +180,8 @@ LOGGING = {
 	}
 }
 
-# Tesseract-specific options:
-TESSERACT_LOCAL = True
-
-# If TESSERACT_LOCAL is True, these don't matter:
-TESSERACT_USERNAME = 'username'
-TESSERACT_HOST = 'example.com'
-TESSERACT_PORT = 22
-TESSERACT_REMOTE_TMP_DIR = 'tmp'
-
-# Add some local settings of your own if you like
 try:
-	from djtesseract.localsettings import *
+	from djangotesseract.localsettings import *
 except:
-	pass
+	print "Error: localsettings.py is required! Try copying from localsettings.py.template"
+	raise

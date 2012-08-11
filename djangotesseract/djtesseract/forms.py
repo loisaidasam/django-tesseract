@@ -6,7 +6,7 @@ import time
 from django import forms
 from django.conf import settings
 
-import djtesseract.tesseractlib.tesseractlib as tesseractlib
+import djangotesseract.djtesseract.tesseractlib as tesseractlib
 
 logger = logging.getLogger(__name__)
 

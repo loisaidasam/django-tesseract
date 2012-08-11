@@ -1,0 +1,9 @@
+
+# Tesseract-specific options:
+TESSERACT_LOCAL = True
+
+# If TESSERACT_LOCAL is True, these don't matter:
+TESSERACT_USERNAME = 'username'
+TESSERACT_HOST = 'example.com'
+TESSERACT_PORT = 22
+TESSERACT_REMOTE_TMP_DIR = 'tmp'

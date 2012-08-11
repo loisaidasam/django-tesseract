@@ -46,35 +46,33 @@ def ocr_from_file(filename):
 		else:
 			dir_prefix = ""
 		
-		if dir_prefix:
-			cmd = "mkdir -p %s" % dir_prefix
-			logger.info("Making sure temporary directory is on remote host: %s" % cmd)
-			result = run(cmd)
-			logger.debug(result)
+		# Add another layer of directory with this request's (hopefully unique) time
+		# TODO: make it truly unique for handling multiple concurrent requests
+		dir_prefix += "%s" % int(time.time())
+		
+		cmd = "mkdir -p %s" % dir_prefix
+		logger.info("Making sure temporary directory is on remote host: %s" % cmd)
+		result = run(cmd)
+		logger.debug(result)
 		
 		remote_filename = os.path.basename(filename)
 		logger.info("Copying %s to remote host as %s ..." % (filename, remote_filename))
-		result = put(filename, "%s%s" % (dir_prefix, remote_filename))
+		result = put(filename, "%s/%s" % (dir_prefix, remote_filename))
 		logger.debug(result)
 		logger.info("OK")
 	
-		cmd = "tesseract %s%s %soutfile" % (dir_prefix, remote_filename, dir_prefix)
+		cmd = "tesseract %s/%s %s/outfile" % (dir_prefix, remote_filename, dir_prefix)
 		logger.info("Running tesseract-ocr: %s" % cmd)
 		result = run(cmd)
 		logger.debug(result)
 		
-		cmd = "cat %soutfile.txt" % dir_prefix
+		cmd = "cat %s/outfile.txt" % dir_prefix
 		logger.info("Getting results of tesseract-ocr: %s" % cmd)
 		end_result = run(cmd)
 		logger.debug(result)
 		
-		cmd = "rm %s%s" % (dir_prefix, remote_filename)
-		logger.info("Removing temporary file: %s" % cmd)
-		result = run(cmd)
-		logger.debug(result)
-		
-		cmd = "rm %soutfile.txt" % dir_prefix
-		logger.info("Removing temporary outfile: %s" % cmd)
+		cmd = "rm -rf %s" % dir_prefix
+		logger.info("Removing temporary directory: %s" % cmd)
 		result = run(cmd)
 		logger.debug(result)
 		
